@@ -39,7 +39,12 @@ export function normalizePetEvolution(pet: PetProfile): PetProfile {
     if (existing) existing.groups = [...new Set([...existing.groups, ...groups])];
     else dietEntries.push({ date: entry.date, mealType: entry.mealType, groups: [...new Set(groups)] });
   }
-  return { ...pet, evolutionPath, unlockedForms, dietEntries };
+  const growthMemories = (Array.isArray(pet.growthMemories) ? pet.growthMemories : []).filter((memory) => memory &&
+    typeof memory.id === 'string' && Number.isFinite(Date.parse(memory.date)) && [2, 3, 4].includes(memory.stage) &&
+    EVOLUTION_PATHS.includes(memory.evolutionPath) && unlockedForms.includes(petFormKey(memory.evolutionPath, memory.stage)) &&
+    Number.isInteger(memory.generation) && memory.generation > 0 && Array.isArray(memory.foods))
+    .map((memory) => ({ ...memory, foods: memory.foods.filter((food) => typeof food === 'string').slice(0, 3) }));
+  return { ...pet, evolutionPath, unlockedForms, dietEntries, growthMemories };
 }
 
 function cutoffDate(now: Date): string {

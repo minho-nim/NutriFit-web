@@ -69,7 +69,7 @@ export const AppSettings: React.FC<AppSettingsProps> = ({ onDataResetOrImported 
       <div className="pb-3 border-b border-slate-200">
         <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center gap-2">
           <Settings className="w-5 h-5 text-emerald-600" />
-          앱 설정 및 데이터 관리 (SCR-13)
+          앱 설정 및 데이터 관리
         </h2>
         <p className="text-xs text-slate-500">
           로컬 브라우저 저장소 데이터 백업, 복원 및 데이터 프라이버시 정책을 관리합니다.
@@ -122,7 +122,7 @@ export const AppSettings: React.FC<AppSettingsProps> = ({ onDataResetOrImported 
       <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-2xs space-y-3">
         <h3 className="font-extrabold text-sm text-slate-900 flex items-center gap-2">
           <FileText className="w-4 h-4 text-emerald-600" />
-          <span>식품 영양성분 및 데이터 출처 공시 (PART 5.1 준수)</span>
+          <span>식품 영양성분 및 데이터 출처 공시</span>
         </h3>
         <div className="text-xs text-slate-600 space-y-2 leading-relaxed">
           <p>
@@ -134,7 +134,7 @@ export const AppSettings: React.FC<AppSettingsProps> = ({ onDataResetOrImported 
           <p>
             3. <strong>외식 영양성분 자료집:</strong> 한국 다빈도 외식 메뉴 및 프랜차이즈 공시 영양정보
           </p>
-          <p className="text-[11px] text-slate-400 pt-2 border-t border-slate-100">
+          <p className="text-xs text-slate-400 pt-2 border-t border-slate-100">
             * 사용자가 직접 등록한 음식(USER_CUSTOM)과 AI가 사진에서 추정한 영양소(AI_ESTIMATED)는 공식 검증 데이터와 명확히 구분되어 관리됩니다.
           </p>
         </div>
@@ -144,7 +144,7 @@ export const AppSettings: React.FC<AppSettingsProps> = ({ onDataResetOrImported 
       <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-3">
         <h3 className="font-extrabold text-sm text-slate-900 flex items-center gap-2">
           <Shield className="w-4 h-4 text-emerald-600" />
-          <span>보안 및 개인정보 보호 원칙 (PART 16 준수)</span>
+          <span>보안 및 개인정보 보호 원칙</span>
         </h3>
         <div className="text-xs text-slate-600 space-y-1.5 leading-relaxed">
           <p className="flex items-center gap-2">

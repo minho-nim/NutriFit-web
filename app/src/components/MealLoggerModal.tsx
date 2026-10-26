@@ -1,3 +1,4 @@
+import { useModalDialog } from '../hooks/useModalDialog';
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -70,6 +71,7 @@ export const MealLoggerModal: React.FC<MealLoggerModalProps> = ({
   onSaveCustomFood,
   onClose,
 }) => {
+  const modalRef = useModalDialog(onClose);
   const photoInputId = useId();
   const [mealType, setMealType] = useState<MealType>(initialMealType);
   const [mode, setMode] = useState<'SEARCH' | 'PHOTO' | 'CUSTOM'>('SEARCH');
@@ -223,7 +225,7 @@ export const MealLoggerModal: React.FC<MealLoggerModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-end sm:items-center justify-center sm:p-4">
+    <div ref={modalRef} role="dialog" aria-modal="true" aria-label="식사 기록" className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-end sm:items-center justify-center sm:p-4">
       <div className="bg-white w-full max-w-lg rounded-t-3xl sm:rounded-2xl max-h-[92vh] flex flex-col shadow-xl overflow-hidden animate-in fade-in duration-200">
         {/* Modal Header */}
         <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
@@ -332,7 +334,7 @@ export const MealLoggerModal: React.FC<MealLoggerModalProps> = ({
                     >
                       <div>
                         <div className="font-semibold text-xs text-slate-900">{f.name}</div>
-                        <div className="text-[11px] text-slate-400 mt-0.5">
+                        <div className="text-xs text-slate-400 mt-0.5">
                           {f.servingUnit} · 100g당 {f.calories} kcal · 단백질 {f.protein}g
                         </div>
                       </div>
@@ -380,7 +382,7 @@ export const MealLoggerModal: React.FC<MealLoggerModalProps> = ({
                       <p className="text-xs font-semibold text-slate-700">
                         음식 사진을 찍거나 올려주세요
                       </p>
-                      <p className="text-[11px] text-slate-400 mt-0.5">
+                      <p className="text-xs text-slate-400 mt-0.5">
                         AI가 음식명과 중량을 추정합니다
                       </p>
                       <label
@@ -426,7 +428,7 @@ export const MealLoggerModal: React.FC<MealLoggerModalProps> = ({
                         className="text-left border border-slate-200 rounded-xl overflow-hidden hover:border-slate-400 transition"
                       >
                         <img src={p.img} alt={p.name} className="w-full h-16 object-cover" />
-                        <span className="text-[10px] font-semibold text-slate-700 block p-1.5 truncate">
+                        <span className="text-xs font-semibold text-slate-700 block p-1.5 truncate">
                           {p.name}
                         </span>
                       </button>
@@ -476,7 +478,7 @@ export const MealLoggerModal: React.FC<MealLoggerModalProps> = ({
 
                 <div className="grid grid-cols-3 gap-2">
                   <div>
-                    <label className="block text-[11px] text-slate-500 mb-1">탄수화물 (g)</label>
+                    <label className="block text-xs text-slate-500 mb-1">탄수화물 (g)</label>
                     <input
                       type="number"
                       step="0.1"
@@ -486,7 +488,7 @@ export const MealLoggerModal: React.FC<MealLoggerModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] text-slate-500 mb-1">단백질 (g)</label>
+                    <label className="block text-xs text-slate-500 mb-1">단백질 (g)</label>
                     <input
                       type="number"
                       step="0.1"
@@ -496,7 +498,7 @@ export const MealLoggerModal: React.FC<MealLoggerModalProps> = ({
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] text-slate-500 mb-1">지방 (g)</label>
+                    <label className="block text-xs text-slate-500 mb-1">지방 (g)</label>
                     <input
                       type="number"
                       step="0.1"
@@ -592,25 +594,25 @@ export const MealLoggerModal: React.FC<MealLoggerModalProps> = ({
 
             {/* Scaled Nutrients Summary */}
             <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200/80">
-              <span className="text-[11px] font-semibold text-slate-500 block mb-2">
+              <span className="text-xs font-semibold text-slate-500 block mb-2">
                 {weightG}g 기준 환산 영양소
               </span>
               <div className="grid grid-cols-4 gap-2 text-center text-xs">
                 <div>
-                  <span className="text-[10px] text-slate-400 block">칼로리</span>
+                  <span className="text-xs text-slate-400 block">칼로리</span>
                   <span className="font-extrabold text-slate-900">{scaled.calories}</span>
-                  <span className="text-[10px] text-slate-400"> kcal</span>
+                  <span className="text-xs text-slate-400"> kcal</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-slate-400 block">탄수화물</span>
+                  <span className="text-xs text-slate-400 block">탄수화물</span>
                   <span className="font-bold text-slate-800">{scaled.carbohydrates}g</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-slate-400 block">단백질</span>
+                  <span className="text-xs text-slate-400 block">단백질</span>
                   <span className="font-bold text-slate-800">{scaled.protein}g</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-slate-400 block">지방</span>
+                  <span className="text-xs text-slate-400 block">지방</span>
                   <span className="font-bold text-slate-800">{scaled.fat}g</span>
                 </div>
               </div>

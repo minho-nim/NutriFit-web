@@ -207,17 +207,17 @@ export const DiscoverView: React.FC<DiscoverViewProps> = ({
   ];
 
   return (
-    <div className="space-y-4 pb-20">
+    <div className="space-y-4 pb-28">
       {/* 1. Pet-Driven Recommendation Header Banner */}
       <div className="bg-white rounded-2xl p-4 sm:p-5 border border-stone-200/80 shadow-2xs space-y-3">
         <div className="flex items-center gap-3">
           <PetAvatar stage={pet.growthStage} evolutionPath={pet.evolutionPath} satiety={satiety} mood={satiety >= 95 ? 'SLEEPY' : 'HAPPY'} size="sm" />
           <div className="flex-1">
             <div className="flex items-center gap-1.5">
-              <span className="text-[11px] font-bold text-[#435746] bg-[#EEF2EE] px-2 py-0.5 rounded-full">
+              <span className="text-xs font-bold text-[#3182F6] bg-[#EFF6FF] px-2 py-0.5 rounded-full">
                 밥친구 {pet.petName}의 식단 추천
               </span>
-              <span className="text-[11px] text-stone-400">
+              <span className="text-xs text-stone-400">
                 취향 이해도 {pet.tasteUnderstanding}%
               </span>
             </div>
@@ -255,12 +255,12 @@ export const DiscoverView: React.FC<DiscoverViewProps> = ({
             }}
             className={`px-2.5 py-1 rounded-xl text-xs font-semibold border flex items-center gap-1 transition shrink-0 ${
               exploreNovelty
-                ? 'bg-[#EEF2EE] text-[#334636] border-[#334636]/30 font-bold'
+                ? 'bg-[#EFF6FF] text-[#2469D8] border-[#2469D8]/30 font-bold'
                 : 'text-stone-500 border-stone-200 hover:bg-stone-50'
             }`}
           >
             <Compass className="w-3.5 h-3.5" />
-            <span>새로운 메뉴 탐험</span>
+            <span>새로운 맛 보기</span>
           </button>
         </div>
       </div>
@@ -288,18 +288,18 @@ export const DiscoverView: React.FC<DiscoverViewProps> = ({
               <div className="flex items-start justify-between">
                 <div>
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    <span className="text-[10px] font-bold text-stone-600 bg-stone-100 px-1.5 py-0.2 rounded-sm">
+                    <span className="text-xs font-bold text-stone-600 bg-stone-100 px-1.5 py-0.2 rounded-sm">
                       {rec.category}
                     </span>
 
                     {/* Allergen verification status */}
-                    <span className="text-[10px] text-emerald-800 bg-emerald-50 px-1.5 py-0.2 rounded-sm font-semibold flex items-center gap-0.5 border border-emerald-200/60">
+                    <span className="text-xs text-emerald-800 bg-emerald-50 px-1.5 py-0.2 rounded-sm font-semibold flex items-center gap-0.5 border border-emerald-200/60">
                       <ShieldCheck className="w-3 h-3 text-emerald-600" />
                       {rec.allergenStatus === 'NOT_CHECKED' ? '활성 알레르기 설정 없음' : '등록 알레르기 성분 불일치'}
                     </span>
 
                     {isAlternativeActive && (
-                      <span className="text-[10px] font-bold text-blue-700 bg-blue-50 px-1.5 py-0.2 rounded-sm border border-blue-200">
+                      <span className="text-xs font-bold text-blue-700 bg-blue-50 px-1.5 py-0.2 rounded-sm border border-blue-200">
                         대체 추천 메뉴
                       </span>
                     )}
@@ -314,7 +314,7 @@ export const DiscoverView: React.FC<DiscoverViewProps> = ({
                   <span className="font-bold text-base text-stone-900 tabular-nums">
                     {currentCalories} kcal
                   </span>
-                  <div className="text-[11px] text-stone-400">
+                  <div className="text-xs text-stone-400">
                     단백질 <strong className="text-stone-700">{currentProtein}g</strong> · 탄 {rec.carbohydrates}g · 지 {rec.fat}g
                   </div>
                 </div>
@@ -322,7 +322,7 @@ export const DiscoverView: React.FC<DiscoverViewProps> = ({
 
               {/* Grounded Recommendation Reason */}
               <div className="p-3 bg-stone-50/80 rounded-xl border border-stone-100 space-y-1">
-                <div className="flex items-center gap-1 text-[11px] font-semibold text-[#435746]">
+                <div className="flex items-center gap-1 text-xs font-semibold text-[#3182F6]">
                   <Sparkles className="w-3 h-3" />
                   <span>추천 이유</span>
                 </div>
@@ -330,7 +330,7 @@ export const DiscoverView: React.FC<DiscoverViewProps> = ({
                   {rec.recommendationReason}
                 </p>
                 {rec.learnedTasteReason && (
-                  <div className="text-[11px] text-stone-400">
+                  <div className="text-xs text-stone-400">
                     💡 {rec.learnedTasteReason}
                   </div>
                 )}
@@ -381,7 +381,7 @@ export const DiscoverView: React.FC<DiscoverViewProps> = ({
                   className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1 active:scale-95 shadow-2xs ${
                     eaten
                       ? 'bg-emerald-700 text-white opacity-70 cursor-default'
-                      : 'bg-[#435746] hover:bg-[#344637] text-white'
+                      : 'bg-[#3182F6] hover:bg-[#2469D8] text-white'
                   }`}
                 >
                   {eaten ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}

@@ -70,13 +70,13 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
   const activeAllergies = userAllergies.filter((a) => a.isActive);
 
   return (
-    <div className="space-y-4 pb-20">
+    <div className="space-y-4 pb-28">
       {/* User Header Profile Card */}
       <div className="bg-white rounded-2xl p-5 border border-stone-200/80 shadow-2xs flex items-center justify-between">
         <div>
           <div className="flex items-center gap-2">
             <h3 className="font-bold text-base text-stone-900">{profile.displayName}님</h3>
-            <span className="text-[11px] font-semibold text-[#344837] bg-[#EEF2EE] px-2 py-0.5 rounded-full border border-stone-200">
+            <span className="text-xs font-semibold text-[#344837] bg-[#EFF6FF] px-2 py-0.5 rounded-full border border-stone-200">
               {goalBadge.name}
             </span>
           </div>
@@ -98,7 +98,7 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
 
       {/* Menu Section 1: Health & Nutrition Goals */}
       <div className="bg-white rounded-2xl border border-stone-200/80 shadow-2xs overflow-hidden">
-        <div className="px-4 py-2.5 bg-stone-50/70 border-b border-stone-100 text-[11px] font-bold text-stone-400 uppercase tracking-wider">
+        <div className="px-4 py-2.5 bg-stone-50/70 border-b border-stone-100 text-xs font-bold text-stone-400 uppercase tracking-wider">
           신체 및 영양 목표
         </div>
 
@@ -114,7 +114,7 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
               <User className="w-4 h-4 text-stone-500" />
               <div>
                 <span className="text-xs font-semibold text-stone-900 block">신체 정보 및 대사량</span>
-                <span className="text-[11px] text-stone-400">
+                <span className="text-xs text-stone-400">
                   {profile.age}세 · {profile.sexForCalculation === 'MALE' ? '남성' : '여성'} · {profile.heightCm}cm · BMR {goal.bmr} kcal
                 </span>
               </div>
@@ -133,7 +133,7 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
               <Calculator className="w-4 h-4 text-stone-500" />
               <div>
                 <span className="text-xs font-semibold text-stone-900 block">일일 영양 목표</span>
-                <span className="text-[11px] text-stone-400">
+                <span className="text-xs text-stone-400">
                   {goal.dailyCalorieTarget} kcal (탄 {goal.carbohydrateTargetG}g · 단 {goal.proteinTargetG}g · 지 {goal.fatTargetG}g)
                 </span>
               </div>
@@ -149,7 +149,7 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
               <Scale className="w-4 h-4 text-stone-500" />
               <div>
                 <span className="text-xs font-semibold text-stone-900 block">체중 측정 및 추이</span>
-                <span className="text-[11px] text-stone-400">
+                <span className="text-xs text-stone-400">
                   최근 {weightLogs.length > 0 ? `${weightLogs[weightLogs.length - 1].weightKg}kg` : `${profile.currentWeightKg}kg`}
                 </span>
               </div>
@@ -161,7 +161,7 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
 
       {/* Menu Section 2: Taste Profile & Allergens */}
       <div className="bg-white rounded-2xl border border-stone-200/80 shadow-2xs overflow-hidden">
-        <div className="px-4 py-2.5 bg-stone-50/70 border-b border-stone-100 text-[11px] font-bold text-stone-400 uppercase tracking-wider">
+        <div className="px-4 py-2.5 bg-stone-50/70 border-b border-stone-100 text-xs font-bold text-stone-400 uppercase tracking-wider">
           취향 학습 및 식품 안전
         </div>
 
@@ -171,10 +171,10 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
             className="p-4 flex items-center justify-between hover:bg-stone-50/50 cursor-pointer transition"
           >
             <div className="flex items-center gap-3">
-              <Sparkles className="w-4 h-4 text-[#435746]" />
+              <Sparkles className="w-4 h-4 text-[#3182F6]" />
               <div>
                 <span className="text-xs font-semibold text-stone-900 block">음식 선호도 및 취향 프로필</span>
-                <span className="text-[11px] text-stone-400">
+                <span className="text-xs text-stone-400">
                   {tasteProfile.favoriteCookingMethods[0]
                     ? `선호 조리: ${tasteProfile.favoriteCookingMethods[0].label} · 주요 식재료: ${tasteProfile.favoriteIngredients[0]?.name || '다양'}`
                     : '기록 기반 학습 진행 중'}
@@ -192,7 +192,7 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
               <ShieldAlert className="w-4 h-4 text-amber-600" />
               <div>
                 <span className="text-xs font-semibold text-stone-900 block">알레르기와 식품 제한</span>
-                <span className="text-[11px] text-stone-400">
+                <span className="text-xs text-stone-400">
                   {activeAllergies.length > 0
                     ? `${activeAllergies.map((a) => a.allergenName).join(', ')} 등록됨`
                     : '설정된 알레르기 없음'}
@@ -210,7 +210,7 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
               <FileText className="w-4 h-4 text-stone-500" />
               <div>
                 <span className="text-xs font-semibold text-stone-900 block">공공 영양 데이터 출처</span>
-                <span className="text-[11px] text-stone-400">
+                <span className="text-xs text-stone-400">
                   식품의약품안전처 · 농촌진흥청 국가표준식품성분표 제10개정판
                 </span>
               </div>
@@ -222,7 +222,7 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
 
       {/* Menu Section 3: Data Management */}
       <div className="bg-white rounded-2xl border border-stone-200/80 shadow-2xs overflow-hidden">
-        <div className="px-4 py-2.5 bg-stone-50/70 border-b border-stone-100 text-[11px] font-bold text-stone-400 uppercase tracking-wider">
+        <div className="px-4 py-2.5 bg-stone-50/70 border-b border-stone-100 text-xs font-bold text-stone-400 uppercase tracking-wider">
           데이터 관리
         </div>
 
@@ -235,7 +235,7 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
               <Database className="w-4 h-4 text-stone-500" />
               <div>
                 <span className="text-xs font-semibold text-stone-900 block">데이터 백업 및 초기화</span>
-                <span className="text-[11px] text-stone-400">JSON 내보내기 / 복원 / 데모 리셋</span>
+                <span className="text-xs text-stone-400">JSON 내보내기 / 복원 / 데모 리셋</span>
               </div>
             </div>
             <ChevronRight className="w-4 h-4 text-stone-400" />
@@ -299,7 +299,7 @@ export const MyProfileView: React.FC<MyProfileViewProps> = ({
                     </p>
                     <div className="pt-2 flex items-center gap-2">
                       <span className="font-semibold text-stone-800">학습 신뢰도:</span>
-                      <span className="px-2 py-0.5 rounded-full bg-[#EEF2EE] text-[#334636] font-bold text-[11px]">
+                      <span className="px-2 py-0.5 rounded-full bg-[#EFF6FF] text-[#2469D8] font-bold text-xs">
                         {tasteProfile.tasteConfidence === 'MATURE'
                           ? '정밀 학습 완료 (10회 이상 기록)'
                           : tasteProfile.tasteConfidence === 'ESTABLISHED'

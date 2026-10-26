@@ -97,7 +97,7 @@ export const AllergySettings: React.FC<AllergySettingsProps> = ({
       <div className="pb-3 border-b border-slate-200">
         <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center gap-2">
           <ShieldAlert className="w-5 h-5 text-amber-600" />
-          알레르기 및 식품 제한 관리 (SCR-11)
+          알레르기 및 식품 제한 관리
         </h2>
         <p className="text-xs text-slate-500">
           사용자의 알레르기 유발 식품과 기피 성분을 등록하여 식단 추천 및 음식 기록 전 과정에서 안전 검증을 수행합니다.
@@ -108,7 +108,7 @@ export const AllergySettings: React.FC<AllergySettingsProps> = ({
       <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3">
         <h3 className="font-extrabold text-xs text-slate-900 flex items-center gap-1.5">
           <Info className="w-4 h-4 text-emerald-600" />
-          <span>NutriFit 식품 안전 및 알레르기 검증 상태 기준 (PART 8.3 준수)</span>
+          <span>NutriFit 식품 안전 및 알레르기 검증 상태 기준</span>
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
@@ -117,7 +117,7 @@ export const AllergySettings: React.FC<AllergySettingsProps> = ({
               <AlertTriangle className="w-3.5 h-3.5" />
               CONTAINS (포함 확인)
             </span>
-            <p className="text-slate-600 text-[11px]">
+            <p className="text-slate-600 text-xs">
               원재료 목록에서 사용자 등록 알레르기 성분이 직접 확인되어 강력 경고를 표시합니다.
             </p>
           </div>
@@ -127,7 +127,7 @@ export const AllergySettings: React.FC<AllergySettingsProps> = ({
               <AlertCircle className="w-3.5 h-3.5" />
               CROSS_CONTACT_RISK (교차접촉 주의)
             </span>
-            <p className="text-slate-600 text-[11px]">
+            <p className="text-slate-600 text-xs">
               동일 제조라인 또는 조리환경에서 교차오염 위험이 공시된 식품으로 주의를 안내합니다.
             </p>
           </div>
@@ -137,7 +137,7 @@ export const AllergySettings: React.FC<AllergySettingsProps> = ({
               <ShieldCheck className="w-3.5 h-3.5" />
               VERIFIED_NO_MATCH (성분 미검출)
             </span>
-            <p className="text-slate-600 text-[11px]">
+            <p className="text-slate-600 text-xs">
               확인된 공식 성분표에서 일치 항목 미검출. (단, 개인 체질에 따른 절대적 보증은 아닙니다)
             </p>
           </div>
@@ -147,7 +147,7 @@ export const AllergySettings: React.FC<AllergySettingsProps> = ({
               <HelpCircle className="w-3.5 h-3.5" />
               UNKNOWN (정보 불충분)
             </span>
-            <p className="text-slate-600 text-[11px]">
+            <p className="text-slate-600 text-xs">
               원재료 정보가 부재하여 검증 불가. 안전하다고 단정하지 않고 확인 필요를 고지합니다.
             </p>
           </div>
@@ -157,7 +157,7 @@ export const AllergySettings: React.FC<AllergySettingsProps> = ({
               <Shield className="w-3.5 h-3.5" />
               NOT_CHECKED (미설정)
             </span>
-            <p className="text-slate-600 text-[11px]">
+            <p className="text-slate-600 text-xs">
               알레르기 설정을 건너뛴 상태로 '알레르기 없음'이 아닌 '정보 미설정'으로 관리합니다.
             </p>
           </div>
@@ -188,11 +188,11 @@ export const AllergySettings: React.FC<AllergySettingsProps> = ({
                     <span className="font-extrabold text-sm text-slate-900">
                       {allergenFormatName(allergy.allergenName)}
                     </span>
-                    <span className="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.2 rounded-sm font-semibold">
+                    <span className="text-xs bg-slate-100 text-slate-600 px-1.5 py-0.2 rounded-sm font-semibold">
                       코드: {allergy.allergenCode}
                     </span>
                   </div>
-                  <span className="text-[11px] text-slate-400 block mt-0.5">
+                  <span className="text-xs text-slate-400 block mt-0.5">
                     {allergy.notes || '안전 필터링 항목'}
                   </span>
                 </div>

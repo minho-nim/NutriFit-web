@@ -37,7 +37,8 @@ import { verifyAllergens } from './utils/nutritionEngine';
 import { calculateNutritionGoals } from './utils/nutritionEngine';
 import { VERIFIED_FOODS } from './data/mockFoods';
 import { reconcilePetDiet, recordDietMeal } from './utils/petEvolution';
-import { recommendationLog } from './utils/mealFlow';
+import { recommendationLog, mealTypeForText } from './utils/mealFlow';
+import { captureGrowthMemory } from './utils/petCompanion';
 import { calculateDailySummary } from './utils/nutritionEngine';
 import { analyzeUserTaste } from './utils/tasteEngine';
 import {
@@ -86,6 +87,7 @@ export default function App() {
     return () => window.clearInterval(timer);
   }, []);
   const [currentTab, setCurrentTab] = useState<MainTab>('HOME');
+  useEffect(() => { window.scrollTo({ top: 0, behavior: 'auto' }); }, [currentTab]);
   const [diaryTab, setDiaryTab] = useState<'LOGS' | 'COMBOS' | 'TASTE'>('LOGS');
   const [myInitialScreen, setMyInitialScreen] = useState<'ALLERGIES' | null>(null);
   const [myViewKey, setMyViewKey] = useState(0);
@@ -102,7 +104,7 @@ export default function App() {
   const [petReactionData, setPetReactionData] = useState<PetReactionModalData | null>(null);
 
   // Pet Interactive Chat & Growth Lounge modal state
-  const [petChatTab, setPetChatTab] = useState<'CHAT' | 'GROWTH'>('CHAT');
+  const [petChatTab, setPetChatTab] = useState<'CHAT' | 'GROWTH' | 'MEMORIES'>('CHAT');
   const [isPetChatOpen, setIsPetChatOpen] = useState<boolean>(false);
   const [petChatDialogue, setPetChatDialogue] = useState<PetDialogue | undefined>(undefined);
   const [discoverCategoryFilter, setDiscoverCategoryFilter] = useState<string | undefined>(undefined);
@@ -179,7 +181,7 @@ export default function App() {
 
     // 2. Process Pet Reward & Nutrient Commentary
     const reward = processMealLogReward(petProfileRef.current, newLog, isNewFoodDiscovery);
-    setPetProfile(reward.updatedPet);
+    setPetProfile(captureGrowthMemory(petProfileRef.current, reward.updatedPet, [newLog, ...foodLogsRef.current]));
 
     // Show celebration modal
     let reaction: PetReactionModalData = {
@@ -269,7 +271,7 @@ export default function App() {
 
     // Award taste understanding and EXP to Pet
     const petReward = processFeedbackReward(petProfileRef.current, fb);
-    setPetProfile(petReward.updatedPet);
+    setPetProfile(captureGrowthMemory(petProfileRef.current, petReward.updatedPet, foodLogsRef.current));
     if (petReward.isStageUp) setPetReactionData({
       source: 'FEEDBACK', foodName: fb.menuName, calories: 0, protein: 0, carbs: 0, fat: 0,
       expGained: petReward.expGained, affectionGained: 0, explorationGained: 0,
@@ -380,7 +382,7 @@ export default function App() {
   const discoveredCount = foodCollections.filter((c) => c.isDiscovered).length;
 
   return (
-    <div className="min-h-screen bg-[#FBFBFA] text-stone-900 flex flex-col font-sans selection:bg-[#405443] selection:text-white">
+    <div className="min-h-screen bg-[#F5F6F8] text-stone-900 flex flex-col font-sans selection:bg-[#405443] selection:text-white">
       {/* Editorial Clean Top Bar */}
       <TopBar
         selectedDate={selectedDate}
@@ -392,7 +394,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-xl w-full mx-auto px-4 pt-4">
+      <main className="flex-1 max-w-xl w-full mx-auto px-4 pt-5">
         {/* Tab 1: Home Dashboard with Pet */}
         {currentTab === 'HOME' && (
           <HomeDashboard
@@ -507,7 +509,7 @@ export default function App() {
           }
           setCurrentTab(tab);
         }}
-        onOpenQuickLog={() => openLogger('LUNCH')}
+        onOpenQuickLog={() => openLogger(mealTypeForText(''))}
       />
 
       {/* Fast Standalone Food Logger Modal */}
@@ -529,6 +531,7 @@ export default function App() {
         <PetReactionModal
           pet={petProfile}
           data={petReactionData}
+          onOpenMemories={() => { setPetReactionData(null); setPetChatTab('MEMORIES'); setIsPetChatOpen(true); }}
           onClose={() => setPetReactionData(null)}
         />
       )}

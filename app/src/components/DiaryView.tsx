@@ -67,7 +67,7 @@ export const DiaryView: React.FC<DiaryViewProps> = ({
   const quickCombos = extractQuickCombos(foodLogs);
 
   return (
-    <div className="space-y-4 pb-20">
+    <div className="space-y-4 pb-28">
       {/* Sub-navigation Segmented Control */}
       <div className="bg-stone-200/60 p-1 rounded-xl flex text-xs font-semibold">
         <button
@@ -148,7 +148,7 @@ export const DiaryView: React.FC<DiaryViewProps> = ({
                               <div className="text-xs font-semibold text-stone-900">
                                 {item.foodNameSnapshot}
                               </div>
-                              <div className="text-[11px] text-stone-400 mt-0.5">
+                              <div className="text-xs text-stone-400 mt-0.5">
                                 {item.weightG}g · {item.calories} kcal
                               </div>
                             </div>
@@ -156,14 +156,14 @@ export const DiaryView: React.FC<DiaryViewProps> = ({
                             <div className="flex items-center gap-2">
                               {/* Satisfaction star preview */}
                               {item.satisfactionRating ? (
-                                <span className="flex items-center text-amber-500 text-[11px] font-bold gap-0.5">
+                                <span className="flex items-center text-amber-500 text-xs font-bold gap-0.5">
                                   <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
                                   <span>{item.satisfactionRating}</span>
                                 </span>
                               ) : null}
 
                               {item.allergenStatus === 'CONTAINS' && (
-                                <span className="text-[10px] bg-rose-50 text-rose-600 font-bold px-1.5 py-0.2 rounded-sm border border-rose-200">
+                                <span className="text-xs bg-rose-50 text-rose-600 font-bold px-1.5 py-0.2 rounded-sm border border-rose-200">
                                   알레르기
                                 </span>
                               )}
@@ -198,7 +198,7 @@ export const DiaryView: React.FC<DiaryViewProps> = ({
 
                               {/* Satisfaction Rating input (1~5 stars) */}
                               <div className="flex items-center justify-between">
-                                <span className="text-[11px] text-stone-500 font-medium">
+                                <span className="text-xs text-stone-500 font-medium">
                                   식사 만족도 평가 (취향 학습에 반영):
                                 </span>
                                 <div className="flex items-center gap-1">
@@ -244,7 +244,7 @@ export const DiaryView: React.FC<DiaryViewProps> = ({
             <h4 className="font-bold text-xs text-stone-900 mb-1">
               반복해서 드신 식사 조합 (원클릭 재등록)
             </h4>
-            <p className="text-[11px] text-stone-500">
+            <p className="text-xs text-stone-500">
               평소 자주 드시는 식단 세트를 한 번에 오늘 기록에 담을 수 있습니다.
             </p>
           </div>
@@ -256,18 +256,18 @@ export const DiaryView: React.FC<DiaryViewProps> = ({
                 className="bg-white rounded-2xl p-4 border border-stone-200/80 shadow-2xs flex items-center justify-between"
               >
                 <div>
-                  <span className="text-[10px] font-semibold text-stone-500 bg-stone-100 px-1.5 py-0.2 rounded-sm">
+                  <span className="text-xs font-semibold text-stone-500 bg-stone-100 px-1.5 py-0.2 rounded-sm">
                     {MEAL_TYPE_LABELS[combo.mealType].name} 조합
                   </span>
                   <h5 className="font-bold text-xs text-stone-900 mt-1">{combo.title}</h5>
-                  <div className="text-[11px] text-stone-400 mt-0.5">
+                  <div className="text-xs text-stone-400 mt-0.5">
                     총 {combo.totalCalories} kcal · 단백질 {combo.totalProtein}g
                   </div>
                 </div>
 
                 <button
                   onClick={() => onQuickLogCombo(combo)}
-                  className="px-3 py-1.5 bg-[#405443] hover:bg-[#344637] text-white text-xs font-semibold rounded-xl transition flex items-center gap-1 shadow-2xs"
+                  className="px-3 py-1.5 bg-[#3182F6] hover:bg-[#2469D8] text-white text-xs font-semibold rounded-xl transition flex items-center gap-1 shadow-2xs"
                 >
                   <Plus className="w-3.5 h-3.5" />
                   <span>오늘 담기</span>
@@ -289,12 +289,12 @@ export const DiaryView: React.FC<DiaryViewProps> = ({
           <div className="bg-white rounded-2xl p-5 border border-stone-200/80 shadow-2xs space-y-3">
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-[11px] font-semibold text-stone-400">식습관 학습 프로필</span>
+                <span className="text-xs font-semibold text-stone-400">식습관 학습 프로필</span>
                 <h4 className="font-bold text-base text-stone-900 mt-0.5">
                   {profile.displayName}님의 음식 취향 분석
                 </h4>
               </div>
-              <span className="text-xs bg-[#EEF2EE] text-[#334636] font-semibold px-2 py-0.5 rounded-full">
+              <span className="text-xs bg-[#EFF6FF] text-[#2469D8] font-semibold px-2 py-0.5 rounded-full">
                 {tasteProfile.tasteConfidence === 'MATURE'
                   ? '정밀 학습 완료'
                   : tasteProfile.tasteConfidence === 'ESTABLISHED'
@@ -349,7 +349,7 @@ export const DiaryView: React.FC<DiaryViewProps> = ({
                     key={item.name}
                     className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-50 border border-stone-200 rounded-xl text-xs font-medium text-stone-800"
                   >
-                    <span className="text-[10px] text-stone-400 font-bold">#{idx + 1}</span>
+                    <span className="text-xs text-stone-400 font-bold">#{idx + 1}</span>
                     <span>{item.name}</span>
                   </div>
                 ))}

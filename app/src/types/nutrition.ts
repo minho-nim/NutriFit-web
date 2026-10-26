@@ -275,6 +275,8 @@ export interface PetProfile {
   personality?: PetPersonality; // 펫 성격
   interactionCount?: number; // 펫과의 대화 및 쓰다듬기 상호작용 횟수
   favoriteFood?: string;
+  dailyPlayDate?: string;
+  growthMemories?: PetGrowthMemory[];
   totalMealsShared: number;
   rewardedMealLogIds: string[]; // 중복 경험치 지급 방지용 ID 목록
   rewardedFeedbackIds: string[]; // 중복 피드백 경험치 방지용 ID 목록
@@ -295,6 +297,15 @@ export interface PetProfile {
   feedingEvents?: { date: string; mealType: MealType; fedAt: string; fullnessAfter: number; generation: number }[];
   createdAt: string;
   updatedAt: string;
+}
+
+export interface PetGrowthMemory {
+  id: string;
+  date: string;
+  stage: PetStage;
+  evolutionPath: PetEvolutionPath;
+  generation: number;
+  foods: string[];
 }
 
 export interface FoodCollectionItem {

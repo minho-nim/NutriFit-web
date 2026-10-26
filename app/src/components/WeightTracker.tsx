@@ -81,7 +81,7 @@ export const WeightTracker: React.FC<WeightTrackerProps> = ({
       <div className="pb-3 border-b border-slate-200">
         <h2 className="text-xl font-black text-slate-900 tracking-tight flex items-center gap-2">
           <Scale className="w-5 h-5 text-emerald-600" />
-          체중 및 진행 현황 (SCR-10)
+          체중 및 진행 현황
         </h2>
         <p className="text-xs text-slate-500">
           체중 변화 추세를 안전하게 추적하고 목표 달성률을 확인합니다.
@@ -218,7 +218,7 @@ export const WeightTracker: React.FC<WeightTrackerProps> = ({
                   <div className="font-extrabold text-slate-900 text-sm">
                     {log.weightKg} <span className="text-xs font-normal text-slate-500">kg</span>
                   </div>
-                  <div className="text-[11px] text-slate-400">
+                  <div className="text-xs text-slate-400">
                     {log.measuredAt} {log.note && `· "${log.note}"`}
                   </div>
                 </div>

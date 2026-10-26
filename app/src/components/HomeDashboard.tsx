@@ -37,7 +37,7 @@ interface HomeDashboardProps {
   onNavigateToCollection: (tab?: 'FOOD' | 'GROWTH') => void;
   onUpdatePetName: (newName: string) => void;
   onUpdatePetProfile?: (updatedPet: PetProfile) => void;
-  onOpenPetChatModal?: (initialDialogue?: any, tab?: 'CHAT' | 'GROWTH') => void;
+  onOpenPetChatModal?: (initialDialogue?: any, tab?: 'CHAT' | 'GROWTH' | 'MEMORIES') => void;
   userAllergies: UserAllergyConfig[];
   feedbacks: RecommendationFeedback[];
   onQuickAddFood: (item: MealRecommendation) => void;
@@ -90,7 +90,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
   const calorieRatio = Math.min(1, summary.consumedCalories / (summary.targetCalories || 1));
 
   return (
-    <div className="space-y-4 pb-20">
+    <div className="space-y-4 pb-28">
       {/* 0. AI Pet Companion Card */}
       <HomePetCard
         pet={pet}
@@ -107,10 +107,10 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
       />
 
       {/* 1. Daily Calorie & Macronutrients Card */}
-      <div className="bg-white rounded-2xl p-5 border border-stone-200/80 shadow-2xs">
+      <div className="bg-white rounded-[28px] p-5 shadow-[0_4px_24px_#192e4d05]">
         <div className="flex items-baseline justify-between mb-2">
           <div>
-            <span className="text-[11px] font-semibold text-stone-400">{summary.date} 에너지</span>
+            <span className="text-xs font-semibold text-stone-400">{summary.date} 에너지</span>
             <div className="flex items-baseline gap-1 mt-0.5">
               <span className="text-3xl font-extrabold text-stone-900 tracking-tight tabular-nums">
                 {summary.consumedCalories.toLocaleString()}
@@ -124,14 +124,14 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
           <div className="text-right">
             {summary.remainingCalories >= 0 ? (
               <div>
-                <span className="text-[11px] font-semibold text-stone-400">남은 칼로리</span>
+                <span className="text-xs font-semibold text-stone-400">남은 칼로리</span>
                 <div className="text-base font-bold text-[#3B4E3F]">
                   {summary.remainingCalories.toLocaleString()} kcal
                 </div>
               </div>
             ) : (
               <div>
-                <span className="text-[11px] font-semibold text-stone-400">초과 섭취</span>
+                <span className="text-xs font-semibold text-stone-400">초과 섭취</span>
                 <div className="text-base font-bold text-rose-600">
                   +{Math.abs(summary.remainingCalories).toLocaleString()} kcal
                 </div>
@@ -144,7 +144,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
         <div className="w-full bg-stone-100 rounded-full h-2 overflow-hidden my-3">
           <div
             className={`h-full rounded-full transition-all duration-300 ${
-              summary.remainingCalories < 0 ? 'bg-rose-500' : 'bg-[#435746]'
+              summary.remainingCalories < 0 ? 'bg-rose-500' : 'bg-[#3182F6]'
             }`}
             style={{ width: `${Math.min(100, calorieRatio * 100)}%` }}
           />
@@ -153,26 +153,26 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
         {/* Macronutrient Tri-split */}
         <div className="grid grid-cols-3 gap-2 pt-3 border-t border-stone-100 text-center">
           <div className="bg-stone-50/70 py-2 px-1 rounded-xl">
-            <span className="text-[10px] font-medium text-stone-400 block">탄수화물</span>
+            <span className="text-xs font-medium text-stone-400 block">탄수화물</span>
             <span className="text-xs font-bold text-stone-800">
               {summary.consumedCarbohydrates}
-              <span className="text-[10px] text-stone-400 font-normal"> / {summary.targetCarbohydrates}g</span>
+              <span className="text-xs text-stone-400 font-normal"> / {summary.targetCarbohydrates}g</span>
             </span>
           </div>
 
           <div className="bg-stone-50/70 py-2 px-1 rounded-xl">
-            <span className="text-[10px] font-medium text-stone-400 block">단백질</span>
+            <span className="text-xs font-medium text-stone-400 block">단백질</span>
             <span className="text-xs font-bold text-stone-800">
               {summary.consumedProtein}
-              <span className="text-[10px] text-stone-400 font-normal"> / {summary.targetProtein}g</span>
+              <span className="text-xs text-stone-400 font-normal"> / {summary.targetProtein}g</span>
             </span>
           </div>
 
           <div className="bg-stone-50/70 py-2 px-1 rounded-xl">
-            <span className="text-[10px] font-medium text-stone-400 block">지방</span>
+            <span className="text-xs font-medium text-stone-400 block">지방</span>
             <span className="text-xs font-bold text-stone-800">
               {summary.consumedFat}
-              <span className="text-[10px] text-stone-400 font-normal"> / {summary.targetFat}g</span>
+              <span className="text-xs text-stone-400 font-normal"> / {summary.targetFat}g</span>
             </span>
           </div>
         </div>
@@ -180,19 +180,19 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
       {heroDish && <>
       {/* 2. Centerpiece: The Single Learned Recommendation Card */}
-      <div className="bg-white rounded-2xl p-5 border border-stone-200/80 shadow-2xs relative overflow-hidden">
+      <div className="bg-white rounded-[28px] p-5 shadow-[0_4px_24px_#192e4d05] relative overflow-hidden">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-[#4D6250]" />
             <span className="text-xs font-bold text-stone-800">
-              {MEAL_TYPE_LABELS[nextMeal].name} 추천 · 취향 맞춤 1선
+              {MEAL_TYPE_LABELS[nextMeal].name} 추천 · 이 메뉴 어때요?
             </span>
           </div>
           <button
             onClick={() => onNavigateToDiscover()}
-            className="text-[11px] text-stone-500 hover:text-stone-900 font-medium flex items-center gap-0.5"
+            className="text-xs text-stone-500 hover:text-stone-900 font-medium flex items-center gap-0.5"
           >
-            <span>발견에서 더보기</span>
+            <span>추천 더보기</span>
             <ChevronRight className="w-3 h-3" />
           </button>
         </div>
@@ -200,10 +200,10 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
         <div className="space-y-2.5">
           <div>
             <div className="flex items-center gap-1.5 mb-1">
-              <span className="text-[10px] px-1.5 py-0.2 rounded-sm bg-[#EEF2EE] text-[#334636] font-semibold">
+              <span className="text-xs px-1.5 py-0.2 rounded-sm bg-[#EFF6FF] text-[#2469D8] font-semibold">
                 {COOKING_METHOD_LABELS[heroDish.cookingMethod] || '구이'}
               </span>
-              <span className="text-[10px] px-1.5 py-0.2 rounded-sm bg-stone-100 text-stone-600 font-medium">
+              <span className="text-xs px-1.5 py-0.2 rounded-sm bg-stone-100 text-stone-600 font-medium">
                 {FLAVOR_PROFILE_LABELS[heroDish.flavor] || '담백한 맛'}
               </span>
             </div>
@@ -228,12 +228,12 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
 
           {/* Direct Add Action */}
           <div className="pt-2 flex items-center justify-between border-t border-stone-100">
-            <span className="text-[11px] text-stone-400">
+            <span className="text-xs text-stone-400">
               {profile.displayName}님의 기록 기반 추천
             </span>
             <button
               onClick={() => onQuickAddFood(heroRecommendation)}
-              className="px-3.5 py-1.5 bg-[#405443] hover:bg-[#344637] text-white text-xs font-semibold rounded-xl shadow-2xs transition flex items-center gap-1"
+              className="px-3.5 py-1.5 bg-[#3182F6] hover:bg-[#2469D8] text-white text-xs font-semibold rounded-xl shadow-2xs transition flex items-center gap-1"
             >
               <Plus className="w-3.5 h-3.5" />
               <span>선택한 날짜에 기록</span>
@@ -276,14 +276,14 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
                     {data.items.map((i) => i.foodNameSnapshot).join(', ')}
                   </p>
                 ) : (
-                  <p className="text-[11px] text-stone-300 mt-0.5">{info.timeHint}</p>
+                  <p className="text-xs text-stone-300 mt-0.5">{info.timeHint}</p>
                 )}
               </div>
 
               <button
                 onClick={() => onOpenMealLogger(mType)}
                 aria-label={`${info.name} 기록 추가`}
-                className="w-8 h-8 rounded-full bg-stone-100 hover:bg-[#EEF2EE] hover:text-[#384C3B] text-stone-600 flex items-center justify-center transition shrink-0"
+                className="w-8 h-8 rounded-full bg-stone-100 hover:bg-[#EFF6FF] hover:text-[#384C3B] text-stone-600 flex items-center justify-center transition shrink-0"
               >
                 <Plus className="w-4 h-4 stroke-[2]" />
               </button>
@@ -299,13 +299,13 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
       >
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-xl bg-white flex items-center justify-center text-stone-600 shadow-2xs">
-            <Utensils className="w-4 h-4 text-[#435746]" />
+            <Utensils className="w-4 h-4 text-[#3182F6]" />
           </div>
           <div>
             <div className="text-xs font-bold text-stone-900">
-              나의 취향 변화 & 식습관 인사이트
+              나의 식사 취향
             </div>
-            <div className="text-[11px] text-stone-500 mt-0.5">
+            <div className="text-xs text-stone-500 mt-0.5">
               {tasteProfile.insightHighlights[0] || '기록이 쌓일수록 맞춤형 분석이 정교해집니다'}
             </div>
           </div>

@@ -63,7 +63,7 @@ export const FoodCollectionView: React.FC<FoodCollectionViewProps> = ({
     { id: 'FREQUENT', label: '자주 먹는 음식' },
     { id: 'FIRST_TIME', label: '처음 먹은 음식' },
     { id: 'WANT_AGAIN', label: '다시 먹고 싶은 음식' },
-    { id: 'NEW_EXPLORE', label: '새로운 메뉴 탐험' },
+    { id: 'NEW_EXPLORE', label: '새로운 맛 보기' },
     { id: 'FAVORITES', label: '나만의 즐겨찾기' },
   ];
 
@@ -97,9 +97,9 @@ export const FoodCollectionView: React.FC<FoodCollectionViewProps> = ({
   });
 
   return (
-    <div className="space-y-4 pb-20">
+    <div className="space-y-4 pb-28">
       <div className="flex gap-2 rounded-xl bg-stone-100 p-1" role="group" aria-label="도감 종류">
-        {(['FOOD', 'GROWTH'] as const).map((tab) => <button key={tab} type="button" aria-pressed={collectionTab === tab} onClick={() => setCollectionTab(tab)} className={`flex-1 py-2 text-xs font-bold rounded-lg transition ${collectionTab === tab ? 'bg-white text-[#435746] shadow-sm' : 'text-stone-500'}`}>{tab === 'FOOD' ? '음식 도감' : '펫 성장 도감'}</button>)}
+        {(['FOOD', 'GROWTH'] as const).map((tab) => <button key={tab} type="button" aria-pressed={collectionTab === tab} onClick={() => setCollectionTab(tab)} className={`flex-1 py-2 text-xs font-bold rounded-lg transition ${collectionTab === tab ? 'bg-white text-[#3182F6] shadow-sm' : 'text-stone-500'}`}>{tab === 'FOOD' ? '음식 도감' : '펫 성장 도감'}</button>)}
       </div>
       {collectionTab === 'GROWTH' ? <PetGrowthCollection pet={pet} onUpdatePet={onUpdatePet} /> : <>
       {/* Top Banner: Collection Overview & Pet Partner */}
@@ -107,10 +107,10 @@ export const FoodCollectionView: React.FC<FoodCollectionViewProps> = ({
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="text-[11px] font-bold text-[#435746] bg-[#EEF2EE] px-2 py-0.5 rounded-full">
+              <span className="text-xs font-bold text-[#3182F6] bg-[#EFF6FF] px-2 py-0.5 rounded-full">
                 {pet.petName}의 식사 도감
               </span>
-              <span className="text-[11px] text-stone-400">탐험도 {pet.explorationProgress}%</span>
+              <span className="text-xs text-stone-400">{discoveredItems.length}가지 식사 기억</span>
             </div>
             <h3 className="font-bold text-base text-stone-900 mt-1">
               나만의 음식 도감
@@ -133,12 +133,12 @@ export const FoodCollectionView: React.FC<FoodCollectionViewProps> = ({
 
           <div className="w-full bg-stone-200/80 rounded-full h-2 overflow-hidden">
             <div
-              className="bg-[#435746] h-full rounded-full transition-all duration-500"
+              className="bg-[#3182F6] h-full rounded-full transition-all duration-500"
               style={{ width: `${Math.min(100, Math.max(5, discoveredRatio))}%` }}
             />
           </div>
 
-          <p className="text-[11px] text-stone-500 leading-snug pt-0.5">
+          <p className="text-xs text-stone-500 leading-snug pt-0.5">
             "{pet.petName}와(과) 함께 다양한 음식을 기록할수록 도감이 채워지고 탐험 경험치를 얻어요!"
           </p>
         </div>
@@ -206,17 +206,17 @@ export const FoodCollectionView: React.FC<FoodCollectionViewProps> = ({
                   <div>
                     <div className="flex items-center gap-1.5 flex-wrap">
                       {item.isDiscovered ? (
-                        <span className="text-[10px] font-bold text-[#344837] bg-[#EEF2EE] px-1.5 py-0.2 rounded-sm border border-stone-200/60">
+                        <span className="text-xs font-bold text-[#344837] bg-[#EFF6FF] px-1.5 py-0.2 rounded-sm border border-stone-200/60">
                           발견 완료 · {item.recordCount}회 기록
                         </span>
                       ) : (
-                        <span className="text-[10px] font-semibold text-stone-500 bg-stone-100 px-1.5 py-0.2 rounded-sm">
+                        <span className="text-xs font-semibold text-stone-500 bg-stone-100 px-1.5 py-0.2 rounded-sm">
                           미발견 탐험 메뉴
                         </span>
                       )}
 
                       {item.recordCount >= 3 && (
-                        <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.2 rounded-sm border border-amber-200">
+                        <span className="text-xs font-bold text-amber-700 bg-amber-50 px-1.5 py-0.2 rounded-sm border border-amber-200">
                           단골 메뉴
                         </span>
                       )}
@@ -240,9 +240,9 @@ export const FoodCollectionView: React.FC<FoodCollectionViewProps> = ({
                   </button>
                 </div>
 
-                <p className="mt-2 text-[10px] text-stone-400">{item.servingWeightG || 100}g 기준 · {item.isDiscovered ? '최근 기록량' : '식품 기준량'}</p>
+                <p className="mt-2 text-xs text-stone-400">{item.servingWeightG || 100}g 기준 · {item.isDiscovered ? '최근 기록량' : '식품 기준량'}</p>
                 {/* Nutrition Snapshot */}
-                <div className="flex items-center gap-2 text-[11px] text-stone-500 my-2 py-1.5 px-2.5 bg-stone-50 rounded-xl">
+                <div className="flex items-center gap-2 text-xs text-stone-500 my-2 py-1.5 px-2.5 bg-stone-50 rounded-xl">
                   <span className="font-bold text-stone-900 tabular-nums">{item.calories} kcal</span>
                   <span className="text-stone-300">·</span>
                   <span>단 <strong className="text-stone-800">{item.protein}g</strong></span>
@@ -273,18 +273,18 @@ export const FoodCollectionView: React.FC<FoodCollectionViewProps> = ({
                       </button>
                     ))}
                     {item.personalRating ? (
-                      <span className="text-[10px] text-stone-500 ml-1 font-semibold">
+                      <span className="text-xs text-stone-500 ml-1 font-semibold">
                         {item.personalRating}점
                       </span>
                     ) : (
-                      <span className="text-[10px] text-stone-400 ml-1">별점 평가</span>
+                      <span className="text-xs text-stone-400 ml-1">별점 평가</span>
                     )}
                   </div>
 
                   {/* Quick Log Button */}
                   <button
                     onClick={() => onQuickLogItem(item)}
-                    className="text-xs font-semibold text-[#344837] hover:text-[#253527] bg-[#EEF2EE] hover:bg-[#E3EBE3] px-2.5 py-1 rounded-xl transition flex items-center gap-1 active:scale-95"
+                    className="text-xs font-semibold text-[#344837] hover:text-[#253527] bg-[#EFF6FF] hover:bg-[#E3EBE3] px-2.5 py-1 rounded-xl transition flex items-center gap-1 active:scale-95"
                   >
                     <Plus className="w-3 h-3" />
                     <span>기록하기</span>

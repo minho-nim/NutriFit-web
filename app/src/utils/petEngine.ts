@@ -19,6 +19,7 @@ import {
 } from '../types/nutrition';
 import { VERIFIED_FOODS } from '../data/mockFoods';
 import { advancePetEvolution, EVOLUTION_CONFIG, normalizePetEvolution, recordDietMeal } from './petEvolution';
+import { mealMemory } from './petCompanion';
 import { mealTypeForText } from './mealFlow';
 import { feedPet, getPetSatiety } from './petSatiety';
 
@@ -474,6 +475,16 @@ export function getContextualPetDialogue(params: {
     }
   }
 
+  const rememberedMeal = mealMemory(recentLogs, now);
+  if (rememberedMeal) return {
+    id: `memory-${localDateKey()}`, message: rememberedMeal.message,
+    subMessage: '실제 함께 기록한 식사를 기억하고 있어요.', mood: personality === 'CHEERFUL_VITAMIN' ? 'CHEERING' : 'HAPPY',
+    context: 'HABIT_INSIGHT', actions: [
+      { id: 'memory-chat', label: '이야기 더 하기', actionType: 'INTERACT' },
+      { id: 'memory-log', label: '식사 기록하기', actionType: 'LOG_MEAL', mealType: mealTypeForText('') },
+    ], timestamp: now.toISOString(),
+  };
+
   // 2. Proactive Meal Companion Invitations based on time & taste preferences
   // Breakfast time (06:00 ~ 10:59)
   if (hour >= 6 && hour < 11) {
@@ -632,6 +643,7 @@ export function getPetChatResponse(
     summary: DailyNutritionSummary;
     tasteProfile: UserTasteProfile;
     collectionCount: number;
+    recentLogs?: FoodLog[];
   }
 ): {
   reply: string;
@@ -651,6 +663,11 @@ export function getPetChatResponse(
       reply: fullness >= 75 ? `아 배불러~ 그래도 맛은 있네… 지금 포만감은 ${Math.round(fullness)}%야. 천천히 쉬면서 배 토닥토닥할래! 대화나 쓰다듬기로 배가 꺼지진 않고 시간이 지나면 자연스럽게 편안해져.` : `지금은 편안한 배야! 포만감은 ${Math.round(fullness)}%이고, 시간에 따라 자연스럽게 내려가. 이야기하거나 쓰다듬어도 포만감은 바뀌지 않아.`,
       mood: fullness >= 95 ? 'SLEEPY' : 'SAVORING',
     };
+  }
+
+  if (/기억|어제|추억|단골|좋아하는 음식/.test(q)) {
+    const remembered = mealMemory(params.recentLogs || []);
+    return { reply: remembered?.message || '아직 함께 기록한 식사가 없네. 첫 식사를 남기면 우리 이야기로 기억할게!', mood: 'HAPPY' };
   }
 
   if (/샐러드|가볍|속 편|부드러운/.test(q)) {

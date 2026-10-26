@@ -267,11 +267,11 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
 
                   {/* System vs User Custom Badge */}
                   {isCustomUserGoal ? (
-                    <span className="text-[11px] font-semibold text-amber-800 bg-amber-50 border border-amber-200/80 px-2.5 py-0.5 rounded-full inline-flex items-center gap-1">
+                    <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-200/80 px-2.5 py-0.5 rounded-full inline-flex items-center gap-1">
                       사용자 직접 설정 수치
                     </span>
                   ) : (
-                    <span className="text-[11px] font-semibold text-[#2C4030] bg-[#EEF2EE] border border-stone-200 px-2.5 py-0.5 rounded-full inline-flex items-center gap-1">
+                    <span className="text-xs font-semibold text-[#2C4030] bg-[#EFF6FF] border border-stone-200 px-2.5 py-0.5 rounded-full inline-flex items-center gap-1">
                       <Sparkles className="w-3 h-3 text-[#4A5D4E]" />
                       시스템 권장 수치
                     </span>
@@ -290,7 +290,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                     <Sliders className="w-3.5 h-3.5 text-amber-700" />
                     <span>사용자 맞춤 설정 적용 중</span>
                   </div>
-                  <p className="text-[11px] text-amber-800 leading-normal">
+                  <p className="text-xs text-amber-800 leading-normal">
                     현재 사용자 지정 칼로리와 탄단지 목표가 적용되어 있습니다. 공식 권장 목표({recommendedGoal.dailyCalorieTarget.toLocaleString()} kcal)로 언제든 되돌릴 수 있습니다.
                   </p>
                 </div>
@@ -351,7 +351,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
 
               {/* Macro Proportion Bar */}
               <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-[11px] text-stone-500 font-medium">
+                <div className="flex items-center justify-between text-xs text-stone-500 font-medium">
                   <span>영양소 에너지 비율</span>
                   <span className="tabular-nums">
                     탄수화물 {readOnlyCarbPct}% · 단백질 {readOnlyProteinPct}% · 지방 {readOnlyFatPct}%
@@ -397,7 +397,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                   <h3 className="font-bold text-base text-stone-900">
                     일일 영양 목표 수정
                   </h3>
-                  <span className="text-[11px] font-semibold text-stone-500 bg-stone-100 px-2.5 py-0.5 rounded-full">
+                  <span className="text-xs font-semibold text-stone-500 bg-stone-100 px-2.5 py-0.5 rounded-full">
                     편집 모드
                   </span>
                 </div>
@@ -412,7 +412,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                   <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
                   <div>
                     <span className="font-bold block">권장 최저 안전 칼로리 미만</span>
-                    <span className="text-[11px] text-rose-700">
+                    <span className="text-xs text-rose-700">
                       성인 {sex === 'MALE' ? '남성' : '여성'}의 건강 유지를 위한 최소 일일 섭취 기준은 {safetyFloor} kcal입니다. 극단적인 저칼로리는 대사량 저하와 영양 불균형을 유발할 수 있습니다.
                     </span>
                   </div>
@@ -428,7 +428,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                       <label htmlFor="input-calories" className="text-xs font-bold text-stone-900 block">
                         1. 하루 총칼로리
                       </label>
-                      <span className="text-[11px] text-stone-400">일일 총 목표 열량</span>
+                      <span className="text-xs text-stone-400">일일 총 목표 열량</span>
                     </div>
 
                     <div className="flex items-center gap-1.5">
@@ -456,7 +456,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                     className="w-full accent-[#344837] cursor-pointer"
                   />
 
-                  <div className="flex justify-between text-[10px] text-stone-400">
+                  <div className="flex justify-between text-xs text-stone-400">
                     <span>1,000 kcal</span>
                     <span>권장 공식: {recommendedGoal.dailyCalorieTarget} kcal</span>
                     <span>4,000 kcal</span>
@@ -470,7 +470,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                       <label htmlFor="input-carbs" className="text-xs font-bold text-stone-900 block">
                         2. 탄수화물 목표(g)
                       </label>
-                      <div className="text-[11px] text-stone-500 tabular-nums">
+                      <div className="text-xs text-stone-500 tabular-nums">
                         {draftCarbKcal.toLocaleString()} kcal · {draftCarbPct}%
                       </div>
                     </div>
@@ -500,7 +500,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                     className="w-full accent-[#5B6D5E] cursor-pointer"
                   />
 
-                  <div className="flex justify-between text-[10px] text-stone-400">
+                  <div className="flex justify-between text-xs text-stone-400">
                     <span>30 g</span>
                     <span>권장: {recommendedGoal.carbohydrateTargetG} g</span>
                     <span>500 g</span>
@@ -514,7 +514,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                       <label htmlFor="input-protein" className="text-xs font-bold text-stone-900 block">
                         3. 단백질 목표(g)
                       </label>
-                      <div className="text-[11px] text-stone-500 tabular-nums">
+                      <div className="text-xs text-stone-500 tabular-nums">
                         {draftProteinKcal.toLocaleString()} kcal · {draftProteinPct}% · 체중당 {draftProteinPerKg} g/kg
                       </div>
                     </div>
@@ -544,7 +544,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                     className="w-full accent-[#8DA391] cursor-pointer"
                   />
 
-                  <div className="flex justify-between text-[10px] text-stone-400">
+                  <div className="flex justify-between text-xs text-stone-400">
                     <span>30 g</span>
                     <span>권장: {recommendedGoal.proteinTargetG} g</span>
                     <span>300 g</span>
@@ -558,7 +558,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                       <label htmlFor="input-fat" className="text-xs font-bold text-stone-900 block">
                         4. 지방 목표(g)
                       </label>
-                      <div className="text-[11px] text-stone-500 tabular-nums">
+                      <div className="text-xs text-stone-500 tabular-nums">
                         {draftFatKcal.toLocaleString()} kcal · {draftFatPct}%
                       </div>
                     </div>
@@ -588,7 +588,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                     className="w-full accent-[#C4BAA9] cursor-pointer"
                   />
 
-                  <div className="flex justify-between text-[10px] text-stone-400">
+                  <div className="flex justify-between text-xs text-stone-400">
                     <span>15 g</span>
                     <span>권장: {recommendedGoal.fatTargetG} g</span>
                     <span>200 g</span>
@@ -611,13 +611,13 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                   <div style={{ width: `${draftFatPct}%` }} className="bg-[#C4BAA9]" />
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] text-stone-500 pt-0.5">
+                <div className="flex items-center justify-between text-xs text-stone-500 pt-0.5">
                   <span>총 칼로리 목표: {draftCalories.toLocaleString()} kcal</span>
                   {Math.abs(draftMacroCalSum - draftCalories) > 30 ? (
                     <button
                       type="button"
                       onClick={() => setDraftCalories(draftMacroCalSum)}
-                      className="text-[#334636] font-semibold hover:underline"
+                      className="text-[#2469D8] font-semibold hover:underline"
                     >
                       총칼로리를 탄단지 합계에 맞추기
                     </button>
@@ -678,7 +678,7 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
               </div>
 
               {isProfileSavedAlert && (
-                <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1 animate-in fade-in">
+                <span className="text-xs font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1 animate-in fade-in">
                   <CheckCircle2 className="w-3.5 h-3.5" />
                   저장 완료
                 </span>
@@ -795,12 +795,12 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                       onClick={() => setGoalType(gType)}
                       className={`p-2.5 rounded-xl border text-left transition ${
                         isSelected
-                          ? 'border-[#344837] bg-[#EEF2EE] text-[#2C4030] shadow-2xs font-semibold'
+                          ? 'border-[#344837] bg-[#EFF6FF] text-[#2C4030] shadow-2xs font-semibold'
                           : 'border-stone-200 bg-stone-50/50 text-stone-600 hover:bg-stone-50'
                       }`}
                     >
                       <div className="text-xs font-bold">{meta.name}</div>
-                      <div className="text-[10px] text-stone-400 mt-0.5">{meta.desc}</div>
+                      <div className="text-xs text-stone-400 mt-0.5">{meta.desc}</div>
                     </button>
                   );
                 })}
@@ -823,17 +823,17 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
                       onClick={() => setActivityLevel(level)}
                       className={`p-2.5 rounded-xl text-left border transition ${
                         isSelected
-                          ? 'border-[#344837] bg-[#EEF2EE] shadow-2xs'
+                          ? 'border-[#344837] bg-[#EFF6FF] shadow-2xs'
                           : 'border-stone-200 bg-white hover:bg-stone-50'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-xs text-stone-900">{info.label}</span>
-                        <span className="text-[10px] font-semibold text-[#344837]">
+                        <span className="text-xs font-semibold text-[#344837]">
                           x{info.factor}
                         </span>
                       </div>
-                      <p className="text-[10px] text-stone-400 mt-0.5 line-clamp-1">{info.description}</p>
+                      <p className="text-xs text-stone-400 mt-0.5 line-clamp-1">{info.description}</p>
                     </button>
                   );
                 })}
@@ -850,21 +850,21 @@ export const UserProfileAndGoals: React.FC<UserProfileAndGoalsProps> = ({
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="bg-stone-800/80 p-3 rounded-xl border border-stone-700">
-                <span className="text-[10px] text-stone-400 block mb-0.5">기초대사량 (BMR)</span>
+                <span className="text-xs text-stone-400 block mb-0.5">기초대사량 (BMR)</span>
                 <span className="text-lg font-bold text-white tabular-nums">
                   {liveBmr.toLocaleString()} kcal/일
                 </span>
-                <p className="text-[10px] text-stone-400 mt-1 font-mono">
+                <p className="text-xs text-stone-400 mt-1 font-mono">
                   10×{weightKg} + 6.25×{heightCm} - 5×{age} {sex === 'MALE' ? '+ 5' : '- 161'}
                 </p>
               </div>
 
               <div className="bg-stone-800/80 p-3 rounded-xl border border-stone-700">
-                <span className="text-[10px] text-stone-400 block mb-0.5">총 에너지 소비량 (TDEE)</span>
+                <span className="text-xs text-stone-400 block mb-0.5">총 에너지 소비량 (TDEE)</span>
                 <span className="text-lg font-bold text-[#8DA391] tabular-nums">
                   {liveTdee.toLocaleString()} kcal/일
                 </span>
-                <p className="text-[10px] text-stone-400 mt-1 font-mono">
+                <p className="text-xs text-stone-400 mt-1 font-mono">
                   BMR × 활동계수({ACTIVITY_FACTORS[activityLevel].factor})
                 </p>
               </div>
