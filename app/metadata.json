@@ -1,0 +1,6 @@
+{
+  "name": "NutriFit AI - 개인 맞춤형 영양 관리 및 AI 식단 추천",
+  "description": "식단 사진 인식, 정밀 영양 분석, BMR/TDEE 기반 개인 맞춤 목표, 알레르기 안전 검증 및 맞춤형 식단 추천 서비스",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
